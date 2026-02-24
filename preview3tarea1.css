@@ -38,3 +38,8 @@ text-decoration:none;
 color:black;
 font-weight:bold;
 }
+
+img{
+    max-width: 100%;
+    height: auto;
+}
