@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi página con Picnic CSS</title>
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  
+  <style>
+    .flex.demo{
+     margin: .2em 0;
+     background: #2ecc40;
+     text-align: center;
+    }
+    .flex.demo div {
+      border:.1em solid pink;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="tabs two">
+  <input id='tab-1' type='radio' name='tabgroupB' checked />
+  <label class="pseudo button toggle" for="tab-1">Mi Vivencia</label>
+  <input id='tab-2' type='radio' name='tabgroupB'>
+  <label class="pseudo button toggle" for="tab-2">Cambios</label>
+  <div class="row">
+    <div>
+      <p> Mi mamá vino a visitarme y nos dio mucho miedo, todo el dia encerradas con mis roomies,
+        viendo twitter, escuchando todo lo que estaba pasando y no saber que era real y que no. </p>
+    </div>
+
+    <div>
+      <p> Ojala todo estuviera bien, y pudieramos estar en paz y con seguridad</p>
+    </div>
+  </div>
+  </div>
+
+  <button id="musico">Ve por mi artista favorito</button>
+  <button id = "otro" class = "success">Ve por otro artista favorito</button>
+  <div class="flex two four-1200 demo">
+    <div id="bio">1</div>
+    <div id="imagen">2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+  
+  </div>
+
+    <script>
+    
+    let biografia;
+    let biog;
+    document.addEventListener("DOMContentLoaded", function() {
+        biografia = document.getElementById("bio");
+        biog = document.getElementById("imagen");
+        document.getElementById("musico").addEventListener("click", obtenerJSON );
+        document.getElementById("otro").addEventListener("click", obtenerJSON2 );
+        console.log("DOM listo");
+    });
+
+
+     async function obtenerJSON() {
+      const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=Harry_Styles');  
+      const datos = await respuesta.json();
+      console.log(datos);
+
+      const textoArtista = document.createElement('p');
+      textoArtista.textContent = datos.artists[0].strBiographyEN;
+      biografia.appendChild(textoArtista);
+
+      const imagenArtista = document.createElement('img');
+        
+      imagenArtista.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/b/b2/HarryStylesWembley170623_%2865_of_93%29_%2852982678051%29_%28cropped_2%29.jpg');
+      biografia.appendChild(imagenArtista);
+     }
+
+      async function obtenerJSON2() {
+      const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=Adele');  
+      const datos = await respuesta.json();
+      console.log(datos);
+
+      const textoArtista = document.createElement('p');
+      textoArtista.textContent = datos.artists[0].strBiographyEN;
+      biog.appendChild(textoArtista);
+      }
+    </script>
+</body>
+</html>
