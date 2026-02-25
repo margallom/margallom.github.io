@@ -10,9 +10,9 @@
   align-items: center;
   } 
 .caja {
-  width: 200px;
+  width: 600px;
   padding: 20px;
-  border: 3px solid black;
+  border: 25px solid palevioletred;
   margin: 30px;
 }
 body{
