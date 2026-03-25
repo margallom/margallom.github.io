@@ -1,4 +1,5 @@
 import http from 'http';
+import url from 'url';
 
 const servidor = http.createServer((req, res) => {
     console.log("Alguien me mando una solicitud");
@@ -16,4 +17,10 @@ const servidor = http.createServer((req, res) => {
         res.writeHead(200,{'content-type': 'text/plain'});
         res.end('Esto fue el año pasado\n'+x);
     }
+});
+
+const puerto = 1984;
+
+servidor.listen(puerto, ()=> {
+    console.log(`Servidor escuchando en el puerto ${puerto}`);
 });
