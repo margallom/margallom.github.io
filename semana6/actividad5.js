@@ -18,23 +18,24 @@ import fs from 'fs';
         res.end(data);
     });
     }
-
-
     //Esta función deberá enviar un json con los datos de las mascotas
     function getMascotas(req, res) {
         //Esto representa un objeto JSON de una mascota
         //Agrega otra mascota
-        const mascotas = {
+        const mascotas = [{
             "nombre": "Pikachu",
             "color": "Amarillo",
-          };  
+          },
+        {
+            "nombre": "Kenzo",
+            "color": "Negro",
+        }];  
       res.writeHead(200, { 'Content-Type': 'application/json' });
       
-      //Escribe qué hace la función stringify y por qué la tenemos que usar
+      //Convierte un objeto json a una cadena de texto y se usa para enviar datos a un servidor 
       res.end(JSON.stringify(mascotas));
     }
 
-  
     function mostrarPerfil(req, res) {
         fs.readFile('perfil.html', 'utf8', (error, data) => {
             if (error) {
@@ -47,7 +48,6 @@ import fs from 'fs';
         });
       }
 
-     
       function mostrarAdoptantes(req, res) {
         //Construye una página básica adpotantes.html
         fs.readFile('adoptantes.html', 'utf8', (error, data) => {
