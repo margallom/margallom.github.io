@@ -61,20 +61,39 @@ import fs from 'fs';
         });
       }
 
+     function mostrarEquipo(req, res){
+        fs.readFile("equipo.html", "utf8", (error, data) => {
+            if (error) {
+                res.writeHead(500, { "Content-Type": "text/plain" });
+                res.end("Oh no!!!!");
+                return;
+            }
+    
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(data);
+        });
+    }
+
     //Esta función deberá enviar un json con los datos de las adoptantes
     function getAdoptantes(req, res) {
     //Tienes que corregir varias cosas en esta sección
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Aquí van los datos de los adoptantes');
+      const adoptantes = [
+          {"nombre": "Mar",
+           "ciudad": "Guadalajara",
+           "mascota": "Kenzo",
+          }
+      ];
+      res.end(JSON.stringify(adoptantes));
     }
 
     function manejarRuta404(req, res) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       //Cambia el mensaje por algo más divertido
-      res.end('Página no encontrada.');
+      res.end('Seguramente cometiste un error, pon más atención a la siguiente.');
     }
 
-    //incluye el enlace a la documentación de createServer
+    //incluye el enlace a la documentación de createServer: https://nodejs.org/api/http.html#httpcreateserveroptions-requestlistener
     const servidor = http.createServer((req, res) => {
       const url = req.url;
 
@@ -91,6 +110,9 @@ import fs from 'fs';
       else if (url === '/adoptantes') {
         mostrarAdoptantes(req, res);
       } 
+      else if (url === '/equipo'){
+        mostrarEquipo(req, res);
+      }
       //Agrega una ruta /equipo y su función correspondiente para que muestre el equipo del proyecto
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
