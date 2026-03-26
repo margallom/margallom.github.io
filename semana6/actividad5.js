@@ -113,6 +113,9 @@ import fs from 'fs';
       else if (url === '/equipo'){
         mostrarEquipo(req, res);
       }
+      else if (url === '/opinion'){
+        mostrarOpinion(req, res);
+      }
       //Agrega una ruta /equipo y su función correspondiente para que muestre el equipo del proyecto
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
