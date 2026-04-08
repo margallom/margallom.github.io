@@ -4,3 +4,5 @@ class MascotaElemento extends HTMLElement {
     console.log("Constructor ", this);
   }
 }
+
+customElements.define("mascota-elemento", MascotaElemento);
